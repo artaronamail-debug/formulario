@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Final - Sistema Modal Dante Propiedades</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #232deb;
+            margin-bottom: 10px;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+        }
+        
+        .info {
+            background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+        }
+        
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .status.warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        
+        .console-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .instructions {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Dante Propiedades</h1>
+            <h2>🧪 Prueba Final del Sistema de Modal de Imágenes</h2>
+            <p>Verificación completa del sistema corregido</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Instrucciones de Prueba:</h3>
+            <ol>
+                <li>Abrir la consola del navegador (F12)</li>
+                <li>Hacer clic en "Verificar Sistema"</li>
+                <li>Si todo está OK, abrir <strong>index.html</strong> principal</li>
+                <li>Probar el modal en cualquier propiedad con imágenes</li>
+                <li>Verificar que funciona el botón WhatsApp</li>
+            </ol>
+        </div>
+        
+        <div id="system-status" class="status">
+            <h3>📊 Estado del Sistema:</h3>
+            <div id="status-content">Iniciando verificación...</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="test-button" onclick="verificarSistema()">
+                🔍 Verificar Sistema
+            </button>
+            
+            <button class="test-button info" onclick="abrirPaginaPrincipal()">
+                🏠 Abrir Página Principal
+            </button>
+            
+            <button class="test-button warning" onclick="abrirDebug()">
+                🧪 Página de Debug
+            </button>
+            
+            <button class="test-button success" onclick="limpiarCache()">
+                🧹 Limpiar Cache
+            </button>
+        </div>
+        
+        <div class="console-log">
+            <h4>📜 Log de Verificación:</h4>
+            <div id="console-output">Esperando ejecución...</div>
+        </div>
+        
+        <div id="test-results" class="status">
+            <h3>🧪 Resultados:</h3>
+            <div id="results-content">No hay pruebas ejecutadas aún.</div>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 Iniciando verificación final del sistema...');
+        
+        // Función para agregar logs
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logElement = document.getElementById('console-output');
+            const color = type === 'error' ? '#dc3545' : 
+                         type === 'success' ? '#28a745' : 
+                         type === 'warning' ? '#ffc107' : '#007bff';
+            
+            logElement.innerHTML += `<div style="color: ${color};">[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        function verificarSistema() {
+            console.log('🔍 Iniciando verificación completa del sistema...');
+            addLog('🔍 Iniciando verificación completa del sistema...', 'info');
+            
+            const resultados = [];
+            let estadoGeneral = 'success';
+            
+            // 1. Verificar que index.html existe
+            fetch('./index.html')
+                .then(response => {
+                    if (response.ok) {
+                        addLog('✅ index.html encontrado y accesible', 'success');
+                        resultados.push('✅ Página principal disponible');
+                    } else {
+                        throw new Error('index.html no encontrado');
+                    }
+                })
+                .catch(error => {
+                    addLog('❌ Error: ' + error.message, 'error');
+                    resultados.push('❌ Página principal no disponible');
+                    estadoGeneral = 'error';
+                })
+                .then(() => {
+                    // 2. Verificar app-integrado.js
+                    return fetch('./app-integrado.js');
+                })
+                .then(response => {
+                    if (response.ok) {
+                        addLog('✅ app-integrado.js encontrado y accesible', 'success');
+                        resultados.push('✅ JavaScript principal disponible');
+                    } else {
+                        throw new Error('app-integrado.js no encontrado');
+                    }
+                })
+                .catch(error => {
+                    addLog('❌ Error: ' + error.message, 'error');
+                    resultados.push('❌ JavaScript principal no disponible');
+                    estadoGeneral = 'error';
+                })
+                .then(() => {
+                    // 3. Verificar propiedades.json
+                    return fetch('./propiedades.json');
+                })
+                .then(response => {
+                    if (response.ok) {
+                        addLog('✅ propiedades.json encontrado y accesible', 'success');
+                        resultados.push('✅ Archivo de datos disponible');
+                    } else {
+                        throw new Error('propiedades.json no encontrado');
+                    }
+                })
+                .catch(error => {
+                    addLog('❌ Error: ' + error.message, 'error');
+                    resultados.push('❌ Archivo de datos no disponible');
+                    estadoGeneral = 'warning';
+                })
+                .then(() => {
+                    // 4. Verificar sintaxis de JavaScript
+                    try {
+                        // Cargar y verificar app-integrado.js
+                        fetch('./app-integrado.js')
+                            .then(r => r.text())
+                            .then(code => {
+                                // Verificación básica de sintaxis
+                                const hasAbrirModal = code.includes('function abrirModalImagenesComplete');
+                                const hasAppLoading = code.includes('<script src="app-integrado.js">');
+                                
+                                if (hasAbrirModal) {
+                                    addLog('✅ Función abrirModalImagenesComplete encontrada', 'success');
+                                    resultados.push('✅ Función de modal implementada');
+                                } else {
+                                    addLog('❌ Función abrirModalImagenesComplete no encontrada', 'error');
+                                    resultados.push('❌ Función de modal faltante');
+                                    estadoGeneral = 'error';
+                                }
+                                
+                                // Verificar si se está cargando en index.html
+                                fetch('./index.html')
+                                    .then(r => r.text())
+                                    .then(html => {
+                                        const hasScript = html.includes('src="app-integrado.js"');
+                                        if (hasScript) {
+                                            addLog('✅ app-integrado.js se carga en index.html', 'success');
+                                            resultados.push('✅ Script correctamente referenciado');
+                                        } else {
+                                            addLog('❌ app-integrado.js NO se carga en index.html', 'error');
+                                            resultados.push('❌ Script no referenciado en HTML');
+                                            estadoGeneral = 'error';
+                                        }
+                                        
+                                        // Mostrar resultados finales
+                                        mostrarResultados(resultados, estadoGeneral);
+                                    });
+                            });
+                    } catch (error) {
+                        addLog('❌ Error verificando JavaScript: ' + error.message, 'error');
+                        resultados.push('❌ Error en verificación de JavaScript');
+                        mostrarResultados(resultados, 'error');
+                    }
+                });
+        }
+        
+        function mostrarResultados(resultados, estado) {
+            const statusElement = document.getElementById('system-status');
+            const resultsElement = document.getElementById('results-content');
+            
+            statusElement.className = `status ${estado}`;
+            
+            let mensaje = '';
+            if (estado === 'success') {
+                mensaje = '🎉 ¡Sistema Completamente Funcional!';
+                addLog('🎉 ¡Sistema verificado y funcionando!', 'success');
+            } else if (estado === 'warning') {
+                mensaje = '⚠️ Sistema Funcional con Advertencias';
+                addLog('⚠️ Sistema funcional pero con advertencias', 'warning');
+            } else {
+                mensaje = '❌ Sistema con Errores';
+                addLog('❌ Sistema tiene errores que requieren atención', 'error');
+            }
+            
+            const lista = '<ul>' + resultados.map(r => `<li>${r}</li>`).join('') + '</ul>';
+            resultsElement.innerHTML = `<h4>${mensaje}</h4>${lista}`;
+            
+            // Agregar recomendación
+            if (estado === 'success') {
+                addLog('💡 Recomendación: Abrir index.html y probar el modal en una propiedad', 'info');
+            }
+        }
+        
+        function abrirPaginaPrincipal() {
+            window.open('./index.html', '_blank');
+            addLog('🏠 Abriendo página principal...', 'info');
+        }
+        
+        function abrirDebug() {
+            window.open('./test-debug-modal.html', '_blank');
+            addLog('🧪 Abriendo página de debug...', 'info');
+        }
+        
+        function limpiarCache() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => {
+                        caches.delete(name);
+                    });
+                });
+            }
+            
+            // Limpiar localStorage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            addLog('🧹 Cache y almacenamiento limpiados', 'success');
+            alert('✅ Cache limpiado. Recarga la página para aplicar cambios.');
+        }
+        
+        // Verificación automática al cargar
+        window.addEventListener('load', function() {
+            addLog('✅ Página de verificación cargada correctamente', 'success');
+            
+            setTimeout(() => {
+                addLog('💡 Haz clic en "Verificar Sistema" para comenzar las pruebas', 'info');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

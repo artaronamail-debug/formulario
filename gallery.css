@@ -1,0 +1,431 @@
+        /* RESET Y BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* HEADER CON LOGO Y COLORES CORPORATIVOS */
+        .gallery-header {
+            background: linear-gradient(135deg, #232deb 0%, #1a1db4 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(35, 45, 235, 0.4);
+        }
+
+        .gallery-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .company-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* CONTENEDOR PRINCIPAL - APROVECHA TODA LA PANTALLA */
+        .gallery-container {
+            padding: 15px 0;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* GRID RESPONSIVO DE IMÁGENES */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 0 15px;
+            max-width: none;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 10px;
+                padding: 0 10px;
+            }
+        }
+
+        /* TARJETAS DE IMAGEN */
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(35, 45, 235, 0.2);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        /* OVERLAY CON INFORMACIÓN */
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px 15px 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .image-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #232deb;
+        }
+
+        .image-location {
+            font-size: 0.9em;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .image-price {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ff0101;
+            margin-top: 8px;
+        }
+
+        /* BOTONES DE ACCIÓN */
+        .image-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-info {
+            background: #232deb;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #1a1db4;
+        }
+
+        .btn-contact {
+            background: #ff0101;
+            color: white;
+        }
+
+        .btn-contact:hover {
+            background: #dc2626;
+        }
+
+        /* MODAL PARA IMAGEN COMPLETA */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 95vw;
+            max-height: 95vh;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: rgba(35, 45, 235, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #232deb;
+        }
+
+        /* NAVEGACIÓN DEL MODAL */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(35, 45, 235, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background: #232deb;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: -60px;
+        }
+
+        .modal-next {
+            right: -60px;
+        }
+
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #232deb;
+            font-size: 1.1em;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1500;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* FILTROS SUPERIORES */
+        .gallery-filters {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 0 15px 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            background: rgba(35, 45, 235, 0.1);
+            color: #232deb;
+            border: 1px solid #232deb;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #232deb;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background: #232deb;
+            color: white;
+        }
+
+        /* ESTADÍSTICAS */
+        .gallery-stats {
+            background: rgba(35, 45, 235, 0.1);
+            margin: 0 15px 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #232deb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #ff0101;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #232deb;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE MEJORADO PARA MÓVILES */
+        @media (max-width: 768px) {
+            .gallery-header {
+                padding: 15px 10px;
+            }
+
+            .gallery-header h1 {
+                font-size: 1.4em;
+                gap: 8px;
+            }
+
+            .company-logo {
+                width: 28px;
+                height: 28px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                padding: 0 10px;
+            }
+
+            .gallery-image {
+                height: 200px;
+            }
+
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                padding: 10px 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 10px;
+            }
+
+            .gallery-image {
+                height: 180px;
+            }
+
+            .image-overlay {
+                position: relative;
+                transform: none;
+                background: linear-gradient(135deg, #232deb, #1a1db4);
+            }
+        }

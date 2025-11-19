@@ -1,0 +1,34 @@
+# COMANDOS EXACTOS PARA COPIAR Y PEGAR
+
+## 1. INSTALAR DEPENDENCIAS
+pip install flask pandas openpyxl flask-cors requests
+
+## 2. INICIAR SERVIDOR (Mantener esta terminal abierta)
+python servidor_excel.py
+
+## 3. PROBAR SISTEMA (Abrir otra terminal)
+python test_sistema.py
+
+## 4. ABRIR FORMULARIO EN NAVEGADOR
+http://localhost:5000/formulario
+
+## 5. VER ESTADÍSTICAS (Terminal adicional)
+curl http://localhost:5000/api/estadisticas
+
+## 6. VERIFICAR ESTADO
+curl http://localhost:5000/health
+
+## 7. DESCARGAR EXCEL
+http://localhost:5000/contactos_dante_propiedades.xlsx
+
+## 8. VER LOGS
+type registro_contactos.log
+
+---
+
+## RESUMEN RÁPIDO:
+1. Instalar dependencias
+2. Iniciar servidor_excel.py
+3. Probar con test_sistema.py
+4. Usar formulario en navegador
+5. Revisar contactos_dante_propiedades.xlsx

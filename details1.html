@@ -1,0 +1,153 @@
+ <!-- <details.html> -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Propiedad</title>
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .construction-banner {
+            background-color: yellow;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 130px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        .gallery-image {
+            width: calc(50% - 15px);
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }     
+        .gallery-image:hover {
+         transform: scale(1.05);
+        }
+
+
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+
+        }
+        h1 {
+            color: #ff0101;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            background: #232deb;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+
+        }
+        .back-button:hover {
+            background: #ff0101;
+        }
+    </style>
+</head>
+<body>
+    <header id="cab">
+        <div class="cont">
+            <a href="index.html" class="logo">
+                <img src="llave.png" alt="Dante Propiedades" width="90" height="30" loading="eager">
+                <span class="logo-text">DANTE PROPIEDADES</span>
+            </a>
+            <nav class="menugen">
+                <div class="construction-banner">
+                    <p>Página en Construcción</p>
+                </div>
+                <ul class="menucab">
+                    <li><a href="tel:1166562078"><i class="fas fa-phone"></i> Llamá <span>11 6656 2078</span></a></li>
+                    <li><a href="tasaciones">Tasá</a></li>
+                    <li><a href="propiedades">Buscá</a></li>
+                </ul>
+                <ul class="redescab">
+                    <li><a href="https://instagram.com/danteprop" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://facebook.com/DantePropiedades" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCclLOUtNIhOYTcJTxVPBrCA" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+                <button class="menudesp" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="gallery"></div>
+        <h1 id="imageTitle">Detalles Adicionales de la Propiedad</h1>
+        <p>Esta es la página de detalles adicionales para la propiedad seleccionada.</p>
+        <p>Aquí se podría incluir información mucho más extensa, como:</p>
+        <ul>
+            <li>Descripción completa de la propiedad.</li>
+            <li>Planos o diagramas.</li>
+            <li>Galería de imágenes adicionales.</li>
+            <li>Información de contacto del agente.</li>
+            <li>Características específicas (número de habitaciones, baños, superficie, etc.).</li>
+        </ul>
+        <p>Las imágenes en detalle son: <span id="imageName"></span></p>
+        <a href="destacada1.html" id="backToInfo" class="back-button">Volver a Información General</a>
+        <!-- <a href="info.html?image=" id="backToInfo" class="back-button">Volver a Información General</a> -->
+        <a href="index.html" class="back-button">Volver al Inicio</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imagesParam = urlParams.get('images') || urlParams.get('image');
+            const gallery = document.getElementById('gallery');
+
+            if (imagesParam) {
+                const imageList = imagesParam.split(',');
+                imageList.forEach((imgSrc, index) => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = `Imagen ${index + 1}`;
+                    img.className = 'gallery-image';
+                    gallery.appendChild(img);
+                });
+
+                document.getElementById('imageTitle').textContent = 'Galería de la propiedad';
+                document.getElementById('backToInfo').href = "info.html?image=" + imageList[0];
+                document.getElementById('imageName').textContent = imageList.join(', ');
+            } else {
+                document.getElementById('imageTitle').textContent = 'No se encontraron detalles de la propiedad.';
+                document.getElementById('imageName').textContent = 'N/A';
+            }
+        });
+    </script>
+</body>
+</html>

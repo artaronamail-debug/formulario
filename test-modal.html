@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Modal de Imágenes - Dante Propiedades</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #232deb;
+            margin-bottom: 30px;
+        }
+        
+        .test-property {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .btn-test {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-test:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Prueba Modal de Imágenes - Dante Propiedades</h1>
+        
+        <div class="status info">
+            <strong>📋 Instrucciones:</strong><br>
+            Haz clic en los botones para probar la funcionalidad de visualización ampliada de imágenes.
+        </div>
+        
+        <div class="test-property">
+            <h3>🏠 Casa en Belgrano R (UF003) - 5 Imágenes</h3>
+            <p><strong>Características:</strong> Casa con 4 ambientes, jardín y pileta</p>
+            <p><strong>Imágenes:</strong> 5 fotos disponibles</p>
+            
+            <button class="btn-test" onclick="testModal1()">
+                🖼️ Abrir Modal - Test 1
+            </button>
+        </div>
+        
+        <div class="test-property">
+            <h3>🏢 Departamento en Palermo SoHo (UF002) - 4 Imágenes</h3>
+            <p><strong>Características:</strong> Departamento con 2 ambientes, pileta</p>
+            <p><strong>Imágenes:</strong> 4 fotos disponibles</p>
+            
+            <button class="btn-test" onclick="testModal2()">
+                🖼️ Abrir Modal - Test 2
+            </button>
+        </div>
+        
+        <div class="test-property">
+            <h3>🏠 Terreno en Boedo (UF001) - 3 Imágenes</h3>
+            <p><strong>Características:</strong> Terreno de 306 m²</p>
+            <p><strong>Imágenes:</strong> 3 fotos disponibles</p>
+            
+            <button class="btn-test" onclick="testModal3()">
+                🖼️ Abrir Modal - Test 3
+            </button>
+        </div>
+        
+        <div class="status success">
+            <strong>✅ Funcionalidades a probar:</strong><br>
+            • Navegación con flechas ← →<br>
+            • Navegación con miniaturas<br>
+            • Teclas de teclado (Escape, flechas)<br>
+            • Cierre con clic fuera del modal<br>
+            • Responsive en diferentes tamaños de pantalla
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" style="color: #232deb; text-decoration: none; font-weight: bold;">
+                ← Volver al Sistema Principal
+            </a>
+        </div>
+    </div>
+
+    <!-- Copiar estilos del modal de imágenes -->
+    <style>
+        /* MODAL DE IMÁGENES - VISUALIZACIÓN AMPLIADA */
+        .modal-imagenes {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-imagenes-content {
+            position: relative;
+            background: white;
+            margin: 2% auto;
+            padding: 0;
+            width: 95%;
+            max-width: 1200px;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-imagenes-header {
+            background: linear-gradient(135deg, #232deb 0%, #1a1db4 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .modal-imagenes-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .close-modal-imagenes {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal-imagenes:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+        
+        .modal-imagenes-body {
+            padding: 0;
+            max-height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+        
+        .imagen-grande-container {
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            min-height: 500px;
+        }
+        
+        .imagen-principal {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+        
+        .imagen-grande {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            cursor: zoom-out;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .imagen-grande:hover {
+            transform: scale(1.02);
+        }
+        
+        .nav-btn {
+            position: absolute;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+        
+        .nav-btn-left {
+            left: 20px;
+        }
+        
+        .nav-btn-right {
+            right: 20px;
+        }
+        
+        .imagenes-miniaturas {
+            background: #f8f9fa;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            max-height: 120px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        
+        .miniaturas-grid {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .miniatura {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .miniatura:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .miniatura.activa {
+            border-color: #232deb;
+            transform: scale(1.15);
+            box-shadow: 0 4px 15px rgba(35,45,235,0.3);
+        }
+        
+        .imagen-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .contador-imagenes {
+            font-weight: 600;
+            color: #232deb;
+        }
+        
+        .imagen-descripcion {
+            font-style: italic;
+        }
+    </style>
+
+    <!-- Modal de Visualización Ampliada de Imágenes -->
+    <div id="modal-imagenes" class="modal-imagenes" style="display: none;">
+        <div class="modal-imagenes-content">
+            <div class="modal-imagenes-header">
+                <h2 id="modal-imagenes-titulo">🏠 Vista Ampliada de Imágenes</h2>
+                <span class="close-modal-imagenes" onclick="cerrarModalImagenes()">&times;</span>
+            </div>
+            <div class="modal-imagenes-body">
+                <div class="imagen-grande-container">
+                    <div class="imagen-principal">
+                        <button class="nav-btn nav-btn-left" onclick="imagenAnterior()">❮</button>
+                        <img id="imagen-principal" src="" alt="Imagen de propiedad" class="imagen-grande">
+                        <button class="nav-btn nav-btn-right" onclick="imagenSiguiente()">❯</button>
+                    </div>
+                    <div class="imagenes-miniaturas">
+                        <div id="miniaturas-container" class="miniaturas-grid">
+                            <!-- Las miniaturas se generarán dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+                <div class="imagen-info">
+                    <div class="contador-imagenes">
+                        <span id="contador-actual">1</span> de <span id="contador-total">1</span>
+                    </div>
+                    <div class="imagen-descripcion">
+                        <span id="descripcion-imagen">Vista ampliada de la propiedad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales para el modal de imágenes
+        let imagenesModal = [];
+        let indiceImagenActual = 0;
+        let propiedadActual = null;
+        
+        // Datos de prueba para las propiedades
+        const propiedadesTest = {
+            uf003: {
+                id_temporal: "UF003",
+                titulo: "Casa en Belgrano R",
+                barrio: "Belgrano",
+                precio: 650000,
+                ambientes: 4,
+                metros_cuadrados: 180,
+                operacion: "venta",
+                tipo: "casa",
+                direccion: "",
+                fotos: [
+                    "imgs/house_pool_1_0.jpg",
+                    "imgs/house_exterior_1_7.jpg",
+                    "imgs/house_pool_1_4.jpg",
+                    "imgs/house_exterior_1_8.jpg",
+                    "imgs/house_pool_1_8.jpg"
+                ]
+            },
+            uf002: {
+                id_temporal: "UF002",
+                titulo: "Departamento en Palermo SoHo",
+                barrio: "Palermo",
+                precio: 280000,
+                ambientes: 2,
+                metros_cuadrados: 68,
+                operacion: "alquiler",
+                tipo: "departamento",
+                direccion: "",
+                fotos: [
+                    "imgs/UF001-1.jpg",
+                    "imgs/UF001-2.jpg",
+                    "imgs/UF001-3.jpg",
+                    "imgs/UF004.jpg"
+                ]
+            },
+            uf001: {
+                id_temporal: "UF001",
+                titulo: "Terreno en Boedo",
+                barrio: "Boedo",
+                precio: 0,
+                ambientes: 0,
+                metros_cuadrados: 306,
+                operacion: "venta",
+                tipo: "terreno",
+                direccion: "Avda. La Plata 1300",
+                fotos: [
+                    "imgs/UF001-1.jpg",
+                    "imgs/UF001-2.jpg",
+                    "imgs/UF001-3.jpg"
+                ]
+            }
+        };
+        
+        // Funciones de prueba
+        function testModal1() {
+            console.log('🧪 Test 1: Casa en Belgrano R (5 imágenes)');
+            abrirModalImagenesComplete(propiedadesTest.uf003);
+        }
+        
+        function testModal2() {
+            console.log('🧪 Test 2: Departamento en Palermo SoHo (4 imágenes)');
+            abrirModalImagenesComplete(propiedadesTest.uf002);
+        }
+        
+        function testModal3() {
+            console.log('🧪 Test 3: Terreno en Boedo (3 imágenes)');
+            abrirModalImagenesComplete(propiedadesTest.uf001);
+        }
+        
+        // === COPIAR FUNCIONES DEL MODAL PRINCIPAL ===
+        
+        // Abrir modal de imágenes para una propiedad específica
+        function abrirModalImagenes(propiedad) {
+            try {
+                // Validar que la propiedad tenga imágenes
+                if (!propiedad.fotos || propiedad.fotos.length === 0) {
+                    alert('Esta propiedad no tiene imágenes disponibles.');
+                    return;
+                }
+                
+                // Configurar datos de la propiedad
+                propiedadActual = propiedad;
+                imagenesModal = propiedad.fotos;
+                indiceImagenActual = 0;
+                
+                // Actualizar título del modal
+                document.getElementById('modal-imagenes-titulo').textContent = 
+                    `🏠 ${propiedad.titulo || 'Vista Ampliada de Imágenes'}`;
+                
+                // Mostrar modal
+                document.getElementById('modal-imagenes').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Cargar la primera imagen y miniaturas
+                mostrarImagenActual();
+                generarMiniaturas();
+                
+                // Log para seguimiento
+                console.log(`📸 Abriendo modal de imágenes para ${propiedad.titulo}: ${imagenesModal.length} imágenes`);
+                
+            } catch (error) {
+                console.error('❌ Error al abrir modal de imágenes:', error);
+                alert('Error al abrir la visualización de imágenes. Por favor, inténtelo nuevamente.');
+            }
+        }
+        
+        // Cerrar modal de imágenes
+        function cerrarModalImagenes() {
+            document.getElementById('modal-imagenes').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Limpiar variables
+            imagenesModal = [];
+            indiceImagenActual = 0;
+            propiedadActual = null;
+            
+            console.log('🖼️ Modal de imágenes cerrado');
+        }
+        
+        // Mostrar la imagen actual en el modal
+        function mostrarImagenActual() {
+            if (imagenesModal.length === 0) return;
+            
+            const imgElement = document.getElementById('imagen-principal');
+            const descripcionElement = document.getElementById('descripcion-imagen');
+            const contadorActual = document.getElementById('contador-actual');
+            const contadorTotal = document.getElementById('contador-total');
+            
+            // Verificar que la imagen existe
+            const imagenPath = imagenesModal[indiceImagenActual];
+            
+            // Configurar imagen principal
+            imgElement.src = imagenPath;
+            imgElement.alt = `Imagen ${indiceImagenActual + 1} de ${propiedadActual?.titulo || 'propiedad'}`;
+            
+            // Actualizar contador
+            contadorActual.textContent = indiceImagenActual + 1;
+            contadorTotal.textContent = imagenesModal.length;
+            
+            // Actualizar descripción
+            descripcionElement.textContent = `Vista ${indiceImagenActual + 1} - ${propiedadActual?.titulo || 'Propiedad'}`;
+            
+            // Actualizar miniaturas activas
+            actualizarMiniaturasActivas();
+            
+            console.log(`📷 Mostrando imagen ${indiceImagenActual + 1}/${imagenesModal.length}: ${imagenPath}`);
+        }
+        
+        // Generar miniaturas en el grid inferior
+        function generarMiniaturas() {
+            const container = document.getElementById('miniaturas-container');
+            container.innerHTML = ''; // Limpiar contenedor
+            
+            imagenesModal.forEach((imagen, index) => {
+                const img = document.createElement('img');
+                img.src = imagen;
+                img.className = 'miniatura';
+                img.alt = `Miniatura ${index + 1}`;
+                img.onclick = () => seleccionarImagen(index);
+                
+                container.appendChild(img);
+            });
+            
+            console.log(`🖼️ Generadas ${imagenesModal.length} miniaturas`);
+        }
+        
+        // Actualizar qué miniatura está activa
+        function actualizarMiniaturasActivas() {
+            const miniaturas = document.querySelectorAll('.miniatura');
+            miniaturas.forEach((miniatura, index) => {
+                if (index === indiceImagenActual) {
+                    miniatura.classList.add('activa');
+                } else {
+                    miniatura.classList.remove('activa');
+                }
+            });
+        }
+        
+        // Seleccionar imagen específica desde miniatura
+        function seleccionarImagen(indice) {
+            if (indice >= 0 && indice < imagenesModal.length) {
+                indiceImagenActual = indice;
+                mostrarImagenActual();
+                console.log(`🎯 Imagen seleccionada: ${indice + 1}/${imagenesModal.length}`);
+            }
+        }
+        
+        // Navegar a la imagen anterior
+        function imagenAnterior() {
+            if (imagenesModal.length === 0) return;
+            
+            indiceImagenActual = (indiceImagenActual - 1 + imagenesModal.length) % imagenesModal.length;
+            mostrarImagenActual();
+            console.log(`⬅️ Imagen anterior: ${indiceImagenActual + 1}/${imagenesModal.length}`);
+        }
+        
+        // Navegar a la imagen siguiente
+        function imagenSiguiente() {
+            if (imagenesModal.length === 0) return;
+            
+            indiceImagenActual = (indiceImagenActual + 1) % imagenesModal.length;
+            mostrarImagenActual();
+            console.log(`➡️ Imagen siguiente: ${indiceImagenActual + 1}/${imagenesModal.length}`);
+        }
+        
+        // Función helper para abrir modal de imágenes desde las tarjetas
+        function abrirModalImagenesComplete(property) {
+            try {
+                // Validar que la propiedad tiene imágenes
+                if (!property.fotos || property.fotos.length === 0) {
+                    alert('Esta propiedad no tiene imágenes disponibles.');
+                    return;
+                }
+                
+                console.log('📸 Abriendo modal de imágenes para:', property.titulo);
+                
+                // Llamar a la función del modal
+                abrirModalImagenes(property);
+                
+            } catch (error) {
+                console.error('❌ Error al abrir modal de imágenes:', error);
+                alert('Error al abrir la visualización de imágenes. Por favor, inténtelo nuevamente.');
+            }
+        }
+        
+        // Cerrar modal al hacer clic fuera del contenido
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modal-imagenes');
+            if (event.target === modal) {
+                cerrarModalImagenes();
+            }
+        });
+        
+        // Navegación con teclado para el modal de imágenes
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('modal-imagenes');
+            
+            if (modal.style.display === 'block') {
+                switch(event.key) {
+                    case 'Escape':
+                        cerrarModalImagenes();
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        imagenAnterior();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        imagenSiguiente();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        
+        console.log('🖼️ Sistema de prueba de visualización ampliada cargado');
+    </script>
+</body>
+</html>

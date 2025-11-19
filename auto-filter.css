@@ -1,0 +1,191 @@
+/* ========================================
+   Sistema de Filtrado Automático
+   Estilos para la notificación de filtrado
+   ======================================== */
+
+.auto-filter-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.auto-filter-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse-glow 2s infinite;
+}
+
+.auto-filter-notice i {
+    font-size: 0.75rem;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: rotate(0deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: rotate(15deg);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   Sistema de Documentos de Propiedades
+   Estilos para mostrar documentos PDF
+   ======================================== */
+
+/* Tarjetas de propiedad - Indicador de documentos */
+.property-card-documents {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+    padding: 4px 8px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.property-card-documents i {
+    color: #dc2626;
+    font-size: 0.75rem;
+}
+
+/* Vista de lista - Indicador de documentos */
+.property-list-documents {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+    padding: 3px 6px;
+    background-color: #f9fafb;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.property-list-documents i {
+    color: #dc2626;
+    font-size: 0.7rem;
+}
+
+/* Modal de detalles - Sección de documentos */
+.property-detail-documents {
+    margin: 24px 0;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.property-detail-documents h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px 0;
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.property-detail-documents h4 i {
+    color: #dc2626;
+    font-size: 1rem;
+}
+
+/* Lista de documentos */
+.property-documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.property-document-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.property-document-item:hover {
+    border-color: #dc2626;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+}
+
+.property-document-item i {
+    color: #dc2626;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.document-link {
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.document-link:hover {
+    color: #dc2626;
+    text-decoration: underline;
+}
+
+/* Responsive para documentos */
+@media (max-width: 768px) {
+    .property-detail-documents {
+        margin: 16px 0;
+        padding: 16px;
+    }
+    
+    .property-document-item {
+        padding: 10px;
+    }
+    
+    .document-link {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .property-documents-list {
+        gap: 6px;
+    }
+    
+    .property-document-item {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .property-document-item i {
+        font-size: 1rem;
+    }
+    
+    .document-link {
+        font-size: 0.85rem;
+    }
+}

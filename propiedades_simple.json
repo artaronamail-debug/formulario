@@ -1,0 +1,46 @@
+[
+  {
+    "id_temporal": "UF001",
+    "titulo": "Departamento en Palermo SoHo",
+    "barrio": "Palermo",
+    "precio": 280000,
+    "ambientes": 2,
+    "metros": 68,
+    "operacion": "alquiler",
+    "tipo": "departamento",
+    "descripcion": "Excelente departamento en el corazón de Palermo SoHo"
+  },
+  {
+    "id_temporal": "UF002",
+    "titulo": "Casa en Belgrano",
+    "barrio": "Belgrano",
+    "precio": 650000,
+    "ambientes": 4,
+    "metros": 180,
+    "operacion": "venta",
+    "tipo": "casa",
+    "descripcion": "Magnífica casa familiar con jardín y pileta"
+  },
+  {
+    "id_temporal": "UF003",
+    "titulo": "PH en Recoleta",
+    "barrio": "Recoleta",
+    "precio": 420000,
+    "ambientes": 3,
+    "metros": 95,
+    "operacion": "venta",
+    "tipo": "ph",
+    "descripcion": "Lujoso departamento en torre de Recoleta"
+  },
+  {
+    "id_temporal": "UF004",
+    "titulo": "Monoambiente en Microcentro",
+    "barrio": "Microcentro",
+    "precio": 120000,
+    "ambientes": 1,
+    "metros": 35,
+    "operacion": "alquiler",
+    "tipo": "departamento",
+    "descripcion": "Monoambiente funcional en pleno microcentro"
+  }
+]

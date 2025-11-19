@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /details1.html
+Disallow: /info.html
+Disallow: /llave.png
+Disallow: UF001/destacada1.html
+Disallow: UF001/mapa1.html
+Disallow: UF001/video1.html
+Disallow: UF001/parcela1.html
+Allow: /index.html

@@ -1,0 +1,138 @@
+ <!-- <info.html> -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Propiedad</title>
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .construction-banner {
+            background-color: yellow;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        body {
+            font-family: 'Fira Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 130px; /* Adjust based on your header height */
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        .property-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #ff0101;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            background: #232deb;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background: #ff0101;
+        }
+    </style>
+</head>
+<body>
+    <header id="cab">
+        <div class="cont">
+            <a href="index.html" class="logo">
+                <img src="llave.png" alt="Dante Propiedades" width="90" height="30" loading="eager">
+                <span class="logo-text">DANTE PROPIEDADES</span>
+            </a>
+            <nav class="menugen">
+                <div class="construction-banner">
+                    <p>Página en Construcción</p>
+                </div>
+                <ul class="menucab">
+                    <li><a href="tel:1166562078"><i class="fas fa-phone"></i> Llamá <span>11 6656 2078</span></a></li>
+                    <li><a href="tasaciones">Tasá</a></li>
+                    <li><a href="propiedades">Buscá</a></li>
+                </ul>
+                <ul class="redescab">
+                    <li><a href="https://instagram.com/danteprop" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://facebook.com/DantePropiedades" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCclLOUtNIhOYTcJTxVPBrCA" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+                <button class="menudesp" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Oculta mensaje imageTitle-->
+    <script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const title = document.getElementById("imageTitle");
+        if (title) {
+        title.style.display = "none";
+        }
+    });
+    </script>
+
+    <div class="container">
+        <a href="details.html?image=" id="imageLink">
+            <img id="displayImage" src="" alt="Imagen de Propiedad" class="property-image">
+        </a>
+        <h1 id="imageTitle"> </h1>
+        <p>          </p>
+        <p>Inmueble sobre Avda. La Plata, Boedo, apto para desarrollo Inmobiliario.</p>
+        <p style="display: none;">La imagen mostrada es: <span id="imageName"></span></p>
+        <a href="index.html" class="back-button">Volver al Inicio</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imageName = urlParams.get('image');
+            
+            if (imageName) {
+                const displayImage = document.getElementById('displayImage');
+                const imageLink = document.getElementById('imageLink');
+                
+                displayImage.src = imageName;
+                imageLink.href = "details.html?image=" + imageName; // Update the link's href
+                document.getElementById('imageTitle').textContent = '' + imageName.replace('', '');
+                document.getElementById('imageName').textContent = imageName;
+            } else {
+                document.getElementById('imageTitle').textContent = 'No se encontró información de la propiedad.';
+                document.getElementById('imageName').textContent = 'N/A';
+            }
+        });
+    </script>
+    
+</body>
+</html>
